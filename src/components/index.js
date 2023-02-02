@@ -1,11 +1,7 @@
 import Card from "./Card";
-// import Login from "./Login";
-// import About from "./About";
-// import Posting from "./Posting";
+import Loading from "./Loading";
 
 export {
     Card,
-    // Login,
-    // About,
-    // Posting
+    Loading,
 }

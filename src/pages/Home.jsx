@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Card } from '../components';
+import { Card, Loading } from '../components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../store/action';
+import { fetchUsers, showLoading } from '../store/action';
 import './css/main.css';
 
 const Home = () => {
   const dispatch = useDispatch();
   const users = useSelector(state => state.users);
+  const loading = useSelector(state => state.loading);
   const [userName, setUserName] = useState('');
-  const [payload, setPayload] = useState('')
+  const [payload, setPayload] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +17,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    dispatch(showLoading(true));
     dispatch(fetchUsers(payload));
   }, [dispatch, payload])
 
@@ -38,7 +40,24 @@ const Home = () => {
       <hr className='hr mt-5' />
 
       <div className="row">
-          {users.items?.map((e, idx) => {
+        {loading ? 
+        <div className='d-flex justify-content-center' style={{ fontSize: "20px" }}>
+          <Loading /> 
+        </div>
+        : users.items?.map((e, idx) => {
+            return (
+              <div className="col-lg-3 col-md-6 col-xs-1" key={idx}>
+                <Card data={e} owner={e.login}/>
+              </div>
+            )
+          })}
+          {users.items?.length === 0 && loading === false ?
+            <div className='d-flex justify-content-center' >
+              <img src="../assets/search2.svg" style={{ width: "50%"}} className="img-fluid mt-5" alt="..."></img>
+            </div>
+            : null
+          }
+          {/* {users.items?.map((e, idx) => {
             return (
               <div className="col-lg-3 col-md-6 col-xs-1" key={idx}>
                 <Card data={e} owner={e.login}/>
@@ -50,7 +69,7 @@ const Home = () => {
               <img src="../assets/search2.svg" style={{ width: "50%"}} className="img-fluid mt-5" alt="..."></img>
             </div>
             : null
-          }
+          } */}
       </div>
     </div>
   )

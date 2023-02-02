@@ -1,11 +1,13 @@
 import { 
     FETCH_USERS,
-    FETCH_REPOS
+    FETCH_REPOS,
+    SHOW_LOADING
  } from './constants';
 
 const initState = {
     users: [],
-    repos: []
+    repos: [],
+    loading: false
 }
 
 const reducer = (state = initState, action) => {
@@ -19,6 +21,11 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 repos: action.payload
+            }
+        case SHOW_LOADING:
+            return {
+                ...state,
+                loading: action.payload
             }
         default:
             return state;

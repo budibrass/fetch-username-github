@@ -1,12 +1,14 @@
 /*eslint-disable*/
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchRepos } from '../store/action';
+import { fetchRepos, showLoading } from '../store/action';
+import Loading from './Loading';
 import './style/main.css';
 
 const Card = ({ data, owner }) => {
     const dispatch = useDispatch();
     const repos = useSelector(state => state.repos);
+    const loading = useSelector(state => state.loading);
 
     const handleFetchRepo = ({e, data}) => {
         e.preventDefault();
