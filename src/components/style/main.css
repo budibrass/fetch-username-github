@@ -1,0 +1,18 @@
+/* CARD */
+.info-card {
+    margin-top: -15px;
+    font-size: 15px;
+    color: black;
+}
+
+.badge-info {
+    --bs-bg-opacity: 0.3;
+    background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+
+    font-size: 10px;
+    color: black !important;;
+}
+
+.row-info {
+    margin-top: -30px;
+}
