@@ -6,7 +6,6 @@ const app = {
         const response = axios.request({
             method: "GET",
             url: `${baseUrl}/${url}`,
-            // auth: `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`
             auth: process.env.REACT_APP_AUTH_GITHUB_ACCESS_TOKEN
         });
         return response;
